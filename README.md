@@ -20,9 +20,9 @@ cloud.At present, it only supports modbus rtu driver and aliyun.
 
 8. copy the /install/include/sqlite3 to our project.
 
-# /************************ log ***********************************/
+# /********** log **************/
 
-#05311730:
+# 05311730:
 
 (1) the project can running ok, in arm board.
 
