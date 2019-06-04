@@ -36,3 +36,5 @@ cloud.At present, it only supports modbus rtu driver and aliyun.
 
 (6) transmit paras to thread is the key.
 
+# 06041011:
+(1) the project compile has no warning.
