@@ -1,6 +1,6 @@
 #include <wrapsqlite.h>
 #include <wraperror.h>
-
+#include <sqlite3.h>
 /* the wrap for the sqlite3_open,
  * if return err, printf the err msg, and return */
 int
@@ -8,7 +8,7 @@ Sqlite3_open(const char *filename, sqlite3 **ppDb)
 {
 	int res;
 	if( (res = sqlite3_open(filename, ppDb)) != SQLITE_OK){
-		err_msg( sqlite3_errmsg(&ppDb));
+		err_msg("sqlite3 open error.");
 	}
 	return res;
 }
@@ -25,7 +25,7 @@ int Sqlite3_exec(
 	int res;
 	if( (res = sqlite3_exec(db, sql, callback, arg1, errmsg)) != SQLITE_OK){
 		sqlite3_close(db);
-		err_msg( &err_msg );
+		err_msg("sqlite3_exec fail.");
 	}
 	return res;
 }

@@ -16,6 +16,8 @@
 
 #include	<stdarg.h>
 #include 	<stdio.h>
+#include 	<stdlib.h>
+#include 	<unistd.h>
 #include 	<string.h>
 #include	<sys/stat.h>	/* for S_xxx file mode constants */
 #include	<sys/uio.h>		/* for iovec{} and readv/writev */
