@@ -11,18 +11,18 @@ sqlite3 *gDb = NULL;
 
 typedef struct member{
 	int index;
-        const unsigned char *name;
-	const unsigned char *driver;
+        char name[32];
+	char driver[16];
 	int rem_para1;
-	const unsigned char *rem_para2;
-	const unsigned char *rem_para3;
-	const unsigned char *loc_para1;
-	const unsigned char *loc_para2;
+	char rem_para2[16];
+	char rem_para3[16];
+        char loc_para1[16];
+	char loc_para2[16];
 	int com_index;
 	int data_type;
-	const unsigned char *rw_type;
-	const unsigned char *unit_para1;
-	const unsigned char *unit_para2;
+	char rw_type[3];
+	char unit_para1[3];
+	char unit_para2[3];
 	int data_para;
 	int start_addr;
 	int unit_len;
@@ -84,8 +84,6 @@ main(void)
 	int dev_index = 0;
 	int cnt = 0;
 	
-
-	
 	thread_para = (DEV_PARA *)malloc(sizeof(DEV_PARA)*10);
 	/* open the database. */
 	Sqlite3_open("cfg.db", &gDb);
@@ -101,19 +99,19 @@ main(void)
 		*/
 		nCol = 0;
 		thread_para[dev_index].index = sqlite3_column_int(pstmt, nCol++);
-		thread_para[dev_index].name = sqlite3_column_text(pstmt, nCol++);
+		strcpy(thread_para[dev_index].name,sqlite3_column_text(pstmt, nCol++));
 		printf("name:%s\n", thread_para[dev_index].name);
-		thread_para[dev_index].driver = sqlite3_column_text(pstmt, nCol++);
+		strcpy(thread_para[dev_index].driver,sqlite3_column_text(pstmt, nCol++));
 		thread_para[dev_index].rem_para1 = sqlite3_column_int(pstmt, nCol++);
-		thread_para[dev_index].rem_para2 = sqlite3_column_text(pstmt, nCol++);
-		thread_para[dev_index].rem_para3 = sqlite3_column_text(pstmt, nCol++);
-		thread_para[dev_index].loc_para1 = sqlite3_column_text(pstmt, nCol++);
-		thread_para[dev_index].loc_para2 = sqlite3_column_text(pstmt, nCol++);
+		strcpy(thread_para[dev_index].rem_para2, sqlite3_column_text(pstmt, nCol++));
+		strcpy(thread_para[dev_index].rem_para3, sqlite3_column_text(pstmt, nCol++));
+		strcpy(thread_para[dev_index].loc_para1, sqlite3_column_text(pstmt, nCol++));
+		strcpy(thread_para[dev_index].loc_para2, sqlite3_column_text(pstmt, nCol++));
 		thread_para[dev_index].com_index = sqlite3_column_int(pstmt, nCol++);
 		thread_para[dev_index].data_type = sqlite3_column_int(pstmt, nCol++);
-		thread_para[dev_index].rw_type = sqlite3_column_text(pstmt, nCol++);
-		thread_para[dev_index].unit_para1 = sqlite3_column_text(pstmt, nCol++);
-		thread_para[dev_index].unit_para2 = sqlite3_column_text(pstmt, nCol++);
+		strcpy(thread_para[dev_index].rw_type, sqlite3_column_text(pstmt, nCol++));
+		strcpy(thread_para[dev_index].unit_para1, sqlite3_column_text(pstmt, nCol++));
+		strcpy(thread_para[dev_index].unit_para2, sqlite3_column_text(pstmt, nCol++));
 		thread_para[dev_index].data_para = sqlite3_column_int(pstmt, nCol++);
 		thread_para[dev_index].start_addr = sqlite3_column_int(pstmt, nCol++);
 		thread_para[dev_index].unit_len = sqlite3_column_int(pstmt, nCol++);
@@ -124,7 +122,7 @@ main(void)
 		dev_index++;
 	}
 
-//	sqlite3_finalize(pstmt);
+	sqlite3_finalize(pstmt);
 //	sqlite3_close(gDb);
 	
 	for(i = 0; i < 5; i++)	
