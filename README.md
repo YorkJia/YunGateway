@@ -38,3 +38,7 @@ cloud.At present, it only supports modbus rtu driver and aliyun.
 
 # 06041011:
 (1) the project compile has no warning.
+
+# 06041409:
+(1) modify the struct, not use point(*), but use arrary,malloc size.
+    then can tx para to thread ok.
