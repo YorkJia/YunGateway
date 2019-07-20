@@ -1,4 +1,4 @@
-CROSS = arm-linux-gnueabihf-
+CROSS = arm-fsl-linux-gnueabi-
 
 CC = $(CROSS)gcc
 
@@ -9,15 +9,16 @@ CFLAGS = -g -O2 -Wall
 #include
 
 INC = -I./bsp -I./bsp/wraperror \
-	  -I./bsp/wrapsqlite3/ -I./bsp/wrappthread
+       -I./bsp/wrappthread \
+       -I./bsp/driver/mb_rtu
 
 #lib
-LIBS = -L./lib -lsqlite3 -lpthread
+LIBS = -lpthread
 
 #src
-SRC = test.c  bsp/wraperror/wraperror.c \
-      bsp/wrapsqlite3/wrapsqlite.c \
-      bsp/wrappthread/wrappthread.c
+SRC = main.c  bsp/wraperror/wraperror.c \
+      bsp/wrappthread/wrappthread.c \
+      bsp/driver/mb_rtu/mb_rtu.c 
 
 #target
 TARGET = test

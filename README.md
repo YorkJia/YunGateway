@@ -42,3 +42,7 @@ cloud.At present, it only supports modbus rtu driver and aliyun.
 # 06041409:
 (1) modify the struct, not use point(*), but use arrary,malloc size.
     then can tx para to thread ok.
+
+# 07162238:
+(1) add the driver folder,and mb_rtu driver thread, test well.
+(2) remote the sqlite for the test success.
